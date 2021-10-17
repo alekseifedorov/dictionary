@@ -9,9 +9,7 @@ import my.assignment.service.DictionaryService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @AllArgsConstructor
@@ -40,8 +38,8 @@ public class DictionaryServiceImpl implements DictionaryService {
             entry.getSynonyms().forEach(s ->
                     Optional.ofNullable(cacheService.getEntry(s))
                             .ifPresent(e -> {
-                                entry.getSynonyms().remove(e.getKey());
-                                cacheService.putEntry(entry.getKey(), entry);
+                                e.getSynonyms().remove(word);
+                                cacheService.putEntry(e.getKey(), e);
                             })
             );
         }
@@ -64,7 +62,7 @@ public class DictionaryServiceImpl implements DictionaryService {
             e.getSynonyms().forEach(s -> {
                         Entry entry = Optional.ofNullable(cacheService.getEntry(s))
                                 .orElseThrow(() -> new SynonymNotExistException("Synonym not exist", s));
-                        List<String> synonyms = Optional.ofNullable(entry.getSynonyms()).orElse(new ArrayList<>());
+                        Set<String> synonyms = Optional.ofNullable(entry.getSynonyms()).orElse(new HashSet<>());
                         synonyms.add(e.getKey());
                         entry.setSynonyms(synonyms);
                         cacheService.putEntry(entry.getKey(), entry);

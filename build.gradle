@@ -34,9 +34,11 @@ test {
 }
 
 dependencies {
+    // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    compile 'org.apache.commons:commons-lang3'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.10.5'
 
     // caffeine
     compile 'org.springframework.boot:spring-boot-starter-cache'
@@ -44,9 +46,10 @@ dependencies {
 
     // jersey
     compile 'org.springframework.boot:spring-boot-starter-jersey'
-    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.26'
-    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.26'
-    compile 'org.glassfish.jersey.ext:jersey-spring4:2.26'
+
+    // swagger
+    compile 'io.swagger:swagger-jersey2-jaxrs:1.6.2'
+    compile 'io.swagger:swagger-annotations:1.6.3'
 
     // test
     testCompile 'org.springframework.boot:spring-boot-starter-test'
