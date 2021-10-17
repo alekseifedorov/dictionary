@@ -5,6 +5,7 @@
        To add or remove a synonym, fill in the synonyms array field respectively.
        
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"dictionary\", \"value\": \"Woerterbuch\" }"
+      
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"lexicon\", \"value\": \"Lexicon\"] }"
       
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"dictionary\", \"value\": \"Woerterbuch\", \"synonyms\": [\"lexicon\"] }"
