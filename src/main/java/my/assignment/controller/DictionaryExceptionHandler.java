@@ -1,39 +1,33 @@
 package my.assignment.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import my.assignment.exception.EntryNotExistException;
 import my.assignment.exception.SynonymNotExistException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@Slf4j
-@ControllerAdvice
-public class DictionaryExceptionHandler {
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
-    @ExceptionHandler(EntryNotExistException.class)
-    public ResponseEntity<String> handleEntryNotExistEntry(EntryNotExistException e) {
+@Provider
+public class DictionaryExceptionHandler implements ExceptionMapper<Throwable> {
 
-        log.error("Entry not exist {}", e.getWord(), e);
-
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(SynonymNotExistException.class)
-    public ResponseEntity<String> handleSynonymNotExist(SynonymNotExistException e) {
-
-        log.error("Sysnonym not exist: {}", e.getSynonym(), e);
-
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleError(Exception e) {
-
-        log.error("Error: {}", e.getCause(), e);
-
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    @Override
+    public Response toResponse(Throwable t) {
+        if (t instanceof EntryNotExistException) {
+            EntryNotExistException exc = (EntryNotExistException) t;
+            String message = String.format("Entry not exist: %s", exc.getWord());
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(message)
+                    .build();
+        }
+        if (t instanceof SynonymNotExistException) {
+            SynonymNotExistException exc = (SynonymNotExistException) t;
+            String message = String.format("Synonym not exist: %s", exc.getSynonym());
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(message)
+                    .build();
+        }
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(t.getMessage())
+                .build();
     }
 }

@@ -9,4 +9,6 @@ public interface DictionaryService {
     Entry getEntry(String word);
 
     void deleteEntry(String word);
+
+    void entryExist(String word);
 }
