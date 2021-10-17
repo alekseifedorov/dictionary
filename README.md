@@ -41,5 +41,5 @@
 3. How to run
 
   Type either of the following commands:
- -  java -jar build/libs/dictionary-1.0.jar
+ -  gradlew build && java -jar build/libs/dictionary-1.0.jar
  -  gradlew bootRun
