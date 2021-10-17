@@ -1,7 +1,9 @@
 1. This is a REST service based on Jersey framework and Spring Boot that exposes the following REST endpoints.
     The Swagger 2.0 specification of the service can be found on  http://localhost:8080/swagger.json
 
-    a. Add or update a word in the dictionary. To add or remove a synonym, fill in the synonyms array field respectively.
+    a. Add or update a word in the dictionary. 
+       To add or remove a synonym, fill in the synonyms array field respectively.
+       
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"dictionary\", \"value\": \"Woerterbuch\" }"
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"lexicon\", \"value\": \"Lexicon\"] }"
       
