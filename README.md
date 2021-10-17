@@ -11,12 +11,15 @@
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"dictionary\", \"value\": \"Woerterbuch\", \"synonyms\": [\"lexicon\"] }"
 
     b. Remove a word from the dictionary
+    
       curl --location --request DELETE 'http://localhost:8080/dictionary/entry/dictionary'
 
     c. Check whether a given word exists in the dictionary
+    
       curl --location --head 'http://localhost:8080/dictionary/entry/dictionary'
 
     d. Retrieve an entry including all synonyms for a given word
+    
       curl --location --request GET "http://localhost:8080/dictionary/entry/encyclopedia"
 
       The response might be the following :
