@@ -37,4 +37,10 @@ public class DictionaryController {
     public void delete(@PathParam("word") String word) {
         dictionaryService.deleteEntry(word);
     }
+
+    @HEAD
+    @Path("/entry/{word}")
+    public void exist(@PathParam("word") String word) {
+        dictionaryService.getEntry(word);
+    }
 }

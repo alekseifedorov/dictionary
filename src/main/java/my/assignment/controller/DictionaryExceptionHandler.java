@@ -14,18 +14,16 @@ public class DictionaryExceptionHandler {
 
     @ExceptionHandler(EntryNotExistException.class)
     public ResponseEntity<String> handleEntryNotExistEntry(EntryNotExistException e) {
-
-        log.error("Entry not exist {}", e.getWord(), e);
-
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        String message = String.format("Entry not exist: %s", e.getWord());
+        log.error(message);
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(SynonymNotExistException.class)
     public ResponseEntity<String> handleSynonymNotExist(SynonymNotExistException e) {
-
-        log.error("Sysnonym not exist: {}", e.getSynonym(), e);
-
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        String message = String.format("Synonym not exist: %s", e.getSynonym());
+        log.error(message);
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
 

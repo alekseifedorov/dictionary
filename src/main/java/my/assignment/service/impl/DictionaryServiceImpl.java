@@ -34,7 +34,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public void deleteEntry(String word) {
-        log.info("Get entry [{}]", word);
+        log.info("Delete entry [{}]", word);
         Entry entry = doGetEntry(word);
         if (!CollectionUtils.isEmpty(entry.getSynonyms())) {
             entry.getSynonyms().forEach(s ->
@@ -46,6 +46,12 @@ public class DictionaryServiceImpl implements DictionaryService {
             );
         }
         cacheService.removeEntry(word);
+    }
+
+    @Override
+    public void entryExist(String word) {
+        log.info("Entry exist [{}]", word);
+        doGetEntry(word);
     }
 
     private Entry doGetEntry(String word) {

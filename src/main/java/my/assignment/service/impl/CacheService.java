@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
- * Cache service to implement dictionary.
+ * Cache service to implement the dictionary.
  * Redis can replace the default Spring cache.
  * Document-based DB such as Elasticsearch or MongoDB can be used as well.
  */
