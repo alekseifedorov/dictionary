@@ -1,18 +1,14 @@
 package my.assignment.configuration;
 
-import my.assignment.controller.DictionaryController;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Component
-public class JerseyConfig extends ResourceConfig {
+@Configuration
+public class JerseyConfig {
 
-    public JerseyConfig() {
-        this.registerEndpoints();
+    @Bean
+    public ResourceConfig jaxrsResourceConfig(){
+        return new ResourceConfig().packages("my.assignment");
     }
-
-    private void registerEndpoints() {
-        this.register(DictionaryController.class);
-    }
-
 }
