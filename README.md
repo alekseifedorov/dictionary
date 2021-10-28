@@ -6,7 +6,7 @@
        
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"dictionary\", \"value\": \"Woerterbuch\" }"
       
-      curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"lexicon\", \"value\": \"Lexicon\"] }"
+      curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"lexicon\", \"value\": \"Lexicon\" }"
       
       curl --location --request POST "http://localhost:8080/dictionary/entry" --header "Content-Type: application/json" --data-raw "{ \"key\": \"dictionary\", \"value\": \"Woerterbuch\", \"synonyms\": [\"lexicon\"] }"
 
@@ -16,11 +16,11 @@
 
     c. Check whether a given word exists in the dictionary
     
-      curl --location --head 'http://localhost:8080/dictionary/entry/dictionary'
+      curl --location --head "http://localhost:8080/dictionary/entry/dictionary"
 
     d. Retrieve an entry including all synonyms for a given word
     
-      curl --location --request GET "http://localhost:8080/dictionary/entry/encyclopedia"
+      curl --location --request GET "http://localhost:8080/dictionary/entry/lexicon"
 
       The response might be the following :
   {
